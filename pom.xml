@@ -30,7 +30,7 @@
     <module>demo</module>
     <module>spring-es</module>
     <module>spring-es2</module>
-    <module>spring-websocket</module>
+    <!--<module>spring-websocket</module>-->
     <module>springboot-admin</module>
     <!--<module>springboot-jwt</module>-->
     <module>springboot-logback</module>
