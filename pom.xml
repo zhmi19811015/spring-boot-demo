@@ -32,9 +32,9 @@
     <module>spring-es2</module>
     <module>spring-websocket</module>
     <module>springboot-admin</module>
-    <module>springboot-jwt</module>
+    <!--<module>springboot-jwt</module>-->
     <module>springboot-logback</module>
-    <module>springboot-redis</module>
+    <!--<module>springboot-redis</module>-->
     <module>springboot-security</module>
     <module>springboot-shiro</module>
     <module>springboot-fastdfs</module>
@@ -94,9 +94,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
+
       </plugin>
     </plugins>
   </build>
