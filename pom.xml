@@ -37,7 +37,7 @@
     <!--<module>springboot-redis</module>-->
     <module>springboot-security</module>
     <module>springboot-shiro</module>
-    <module>springboot-fastdfs</module>
+    <!--<module>springboot-fastdfs</module>-->
   </modules>
 
   <dependencies>
