@@ -30,14 +30,18 @@
     <module>demo</module>
     <module>spring-es</module>
     <module>spring-es2</module>
-    <!--<module>spring-websocket</module>-->
+    <module>spring-websocket</module>
     <module>springboot-admin</module>
-    <!--<module>springboot-jwt</module>-->
+    <module>springboot-jwt</module>
     <module>springboot-logback</module>
-    <!--<module>springboot-redis</module>-->
+    <module>springboot-redis</module>
     <module>springboot-security</module>
     <module>springboot-shiro</module>
-    <!--<module>springboot-fastdfs</module>-->
+    <module>springboot-fastdfs</module>
+    <module>netty-demo</module>
+    <module>hadoop-demo</module>
+    <module>rabbitmq-producer</module>
+    <module>rabbitmq-consumer</module>
   </modules>
 
   <dependencies>
@@ -66,20 +70,23 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-
-
-    <!--other-->
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>1.4</version>
-    </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>4.5.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.38</version>
+    </dependency>
     <!--springboot中修改完文件后自动reload的插件，修改完文件Ctrl + F9 Make一下就可以 -->
     <!--<dependency>-->
       <!--<groupId>org.springframework</groupId>-->
@@ -87,6 +94,23 @@
     <!--</dependency>-->
     <!--springboot中修改完文件后自动reload的插件 end -->
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.4</version>
+      </dependency>
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-client</artifactId>
+        <version>2.1.0</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
 
 
   <build>

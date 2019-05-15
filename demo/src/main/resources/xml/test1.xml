@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        - <Message>
+    <Version>1.1</Version>
+    <Token />
+    - <From>
+    - <Address>
+    <Sys>UTCS</Sys>
+    <SubSys />
+    <Instance />
+</Address>
+</From>
+    - <To>
+    - <Address>
+    <Sys>TICP</Sys>
+    <SubSys />
+    <Instance />
+</Address>
+</To>
+    <Type>REQUEST</Type>
+    <Seq>20140828084311000003</Seq>
+    - <Body>
+    - <Operation order="1" name="Unsubscribe">
+    - <SDO_MsgEntity>
+    <MsgType>PUSH</MsgType>
+    <OperName>Notify</OperName>
+    <ObjName>SysInfo</ObjName>
+</SDO_MsgEntity>
+    - <SDO_MsgEntity>
+    <MsgType>REQUEST</MsgType>
+    <OperName>Get</OperName>
+    <ObjName>SDO_TimeServer</ObjName>
+</SDO_MsgEntity>
+</Operation>
+</Body>
+</Message>

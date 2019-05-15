@@ -1,0 +1,7 @@
+server:
+  port: 8312
+spring:
+  kafka:
+    bootstrap-servers: 10.211.55.103:9092,10.211.55.104:9092,10.211.55.105:9092
+    consumer:
+      group-id: mygroup

@@ -39,6 +39,7 @@ public class TransferProject {
         updateBaic();
     }
 
+
     private static void updateBaic(){
         for (File file: list){
             updateName(file);

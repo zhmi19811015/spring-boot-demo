@@ -1,0 +1,11 @@
+server:
+  port: 8917
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://134.175.89.109:3306/test?useSSL=false
+    username: root
+    password: zhangming1015
