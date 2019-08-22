@@ -13,8 +13,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.time.Duration;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * 类作用描述
@@ -64,6 +63,14 @@ public class RedisConfig {
     private boolean testWhileIdle;
 
 
+    /**
+     * 功能描述: redis自动
+     *
+     * @param  1
+     * @return  org.springframework.data.redis.connection.jedis.JedisConnectionFactory
+     * @author  zhangming
+     * @date  2019/7/13 9:33 PM
+     */
     @Bean
     public JedisConnectionFactory JedisConnectionFactory(){
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration ();
@@ -72,11 +79,29 @@ public class RedisConfig {
         //由于我们使用了动态配置库,所以此处省略
         //redisStandaloneConfiguration.setDatabase(database);
         redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
-        JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
-        jedisClientConfiguration.connectTimeout(Duration.ofMillis(timeout));
+//        JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
+//        jedisClientConfiguration.connectTimeout(Duration.ofMillis(timeout));
+//
+//
+//        JedisConnectionFactory factory = new JedisConnectionFactory(redisStandaloneConfiguration,
+//                jedisClientConfiguration.build());
+
+        JedisClientConfiguration.JedisPoolingClientConfigurationBuilder jpb =
+                (JedisClientConfiguration.JedisPoolingClientConfigurationBuilder) JedisClientConfiguration.builder();
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxIdle(maxIdle);
+        jedisPoolConfig.setTestOnBorrow(testOnBorrow);
+        jedisPoolConfig.setTestWhileIdle(testWhileIdle);
+        jedisPoolConfig.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        jedisPoolConfig.setMaxTotal(maxTotal);
+        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+
+        jpb.poolConfig(jedisPoolConfig);
+
         JedisConnectionFactory factory = new JedisConnectionFactory(redisStandaloneConfiguration,
-                jedisClientConfiguration.build());
+                jpb.build());
         return factory;
+
     }
 
 
@@ -135,6 +160,11 @@ public class RedisConfig {
         // 开启事务
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.setConnectionFactory(factory);
+
+
+
+        redisTemplate.afterPropertiesSet();
+
     }
 
 

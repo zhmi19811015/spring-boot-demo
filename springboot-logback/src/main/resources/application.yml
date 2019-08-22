@@ -1,0 +1,45 @@
+
+server:
+  port: 8918
+spring:
+  application:
+    name: "springboot-logback"
+#  profiles:
+#    active: dev
+#  boot:
+#    admin:
+#      client:
+#        username: admin
+#        password: admin
+#        url: http://localhost:8915
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        #监控所有端点，其中health和status是必须监控的
+#        include: "*"
+#        #排除对配置信息的监控，每次浏览这个节点的时候，
+#                  #数据库的链接就一直释放不掉，最后导致超时，因为配置信息的监控也不重要，
+#                  #就不再监控这个节点，以下为可监控的endpoint。可以根据需要有选择的进行监控。
+#                    #- health,status,env,metrics,dump,jolokia,info,
+#                    #configprops,trace,logfile,refresh,flyway,
+#                    #liquibase,heapdump,loggers,auditevents,hystrix.stream,activiti
+#        exclude: configprops
+#
+#info:
+#  name: "@project.name@"
+#  version:  "@project.version@"
+#  spring-boot-version: "@project.parent.version@"
+
+app:
+  name: zhangming
+ming:
+  service:
+    enabled:  true
+    prefix: hello
+    suffix: word
+#logging:
+#  level:
+#    root: info
+#  path: /Users/zhangiming/temp/logs/test
+debug: true

@@ -2,7 +2,6 @@ package com.ming.springbootjwt;
 
 import cn.hutool.core.lang.Console;
 import cn.hutool.http.HttpUtil;
-import com.ming.springbootjwt.entity.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +21,12 @@ public class Test {
     }
 
     public static void test1(){
-        User user = new User();
-        user.setPassword("123456");
-        user.setUsername("andyzhang");
+//        User user = new User();
+//        user.setPassword("123456");
+//        user.setUsername("andyzhang");
         Map<String,Object> mapParams = new HashMap<>();
-        mapParams.put("password","12346");
-        mapParams.put("username","andyzhang");
+        mapParams.put("password","123456");
+        mapParams.put("username","admin");
         String result = httpPost(URL+"auth/register",mapParams);
         System.out.println(result);
     }

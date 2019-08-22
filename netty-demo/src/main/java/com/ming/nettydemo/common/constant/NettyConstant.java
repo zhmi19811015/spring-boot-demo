@@ -13,6 +13,7 @@ public class NettyConstant {
 		final String REGISTER = "ec01";
 		/** 位置 . */
 		final String LOCATION = "ecbe";
+		final int HEAD_DATA = 0XEC;
 
 	}
 }

@@ -1,2 +1,20 @@
 server:
   port: 8915
+spring:
+  security:
+    user:
+      # login user pwd
+      name: admin
+      password: admin
+  boot:
+    admin:
+      ui:
+        title: 服务监控中心
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

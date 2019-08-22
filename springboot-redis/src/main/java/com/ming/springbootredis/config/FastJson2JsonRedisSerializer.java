@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.SerializationException;
 import java.nio.charset.Charset;
 
 /**
- * 自定义序列化
+ * 要实现对象的缓存，定义自己的序列化和反序列化器。使用阿里的fastjson来实现的比较多。
  *
  * @author zhangming
  * @version 1.0

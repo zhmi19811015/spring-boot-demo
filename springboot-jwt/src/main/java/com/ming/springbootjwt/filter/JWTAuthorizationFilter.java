@@ -15,7 +15,8 @@ import java.io.IOException;
 import java.util.Collections;
 
 /**
- * Created by echisan on 2018/6/23
+ * 验证成功当然就是进行鉴权了，每一次需要权限的请求都需要检查该用户是否有该权限去操作该资源，
+ * 当然这也是框架帮我们做的，那么我们需要做什么呢？很简单，只要告诉spring-security该用户是否已登录，是什么角色，拥有什么权限就可以了。
  */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -39,7 +40,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         super.doFilterInternal(request, response, chain);
     }
 
-    // 这里从token中获取用户信息并新建一个token
+    /**
+     * 这里从token中获取用户信息并新建一个token
+     *
+     * @param tokenHeader 1
+     * @return  org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+     * @author  zhangming
+     * @date  2019/7/15 3:02 PM
+     */
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
         String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
         String username = JwtTokenUtils.getUsername(token);

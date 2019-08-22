@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by echisan on 2018/6/23
+ * 该拦截器用于获取用户登录的信息，只需创建一个token并调用authenticationManager.authenticate()让spring-security去进行验证就可以了，
+ * 不用自己查数据库再对比密码了，这一步交给spring去操作。
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -49,14 +50,26 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
-    // 成功验证后调用的方法
-    // 如果验证成功，就生成token并返回
+
+    /**
+     * 成功验证后调用的方法
+     * 如果验证成功，就生成token并返回
+     *
+     * @param request 1
+     * @param response 2
+     * @param chain 3
+     * @param authResult 4
+     * @return  void
+     * @author  zhangming
+     * @date  2019/7/15 3:11 PM
+     */
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-
+        //查看源代码会发现调用getPrincipal()方法会返回一个实现了`UserDetails`接口的对象
+        //// 所以就是JwtUser啦
         JwtUser jwtUser = (JwtUser) authResult.getPrincipal();
         System.out.println("jwtUser:" + jwtUser.toString());
         boolean isRemember = rememberMe.get() == 1;
@@ -75,6 +88,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("token", JwtTokenUtils.TOKEN_PREFIX + token);
     }
 
+    /**
+     * 功能描述:
+     *
+     * @param request 1
+     * @param response 2
+     * @param failed 3
+     * @return  void
+     * @author  zhangming
+     * @date  2019/7/15 3:13 PM
+     */
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         response.getWriter().write("authentication failed, reason: " + failed.getMessage());

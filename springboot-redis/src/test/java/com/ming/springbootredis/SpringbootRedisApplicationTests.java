@@ -7,11 +7,13 @@ import com.ming.springbootredis.service.RedisService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringbootRedisApplicationTests extends AbstractTestNGSpringContextTests {
 
@@ -32,11 +34,12 @@ public class SpringbootRedisApplicationTests extends AbstractTestNGSpringContext
 	}
 
 	@Test
-	public void saveRedis(){
+	public void saveRedis() throws InterruptedException {
 		redisService.save();
 	}
 
-	@org.testng.annotations.Test(invocationCount = 10000, threadPoolSize = 100)
+	//@org.testng.annotations.Test(invocationCount = 10000, threadPoolSize = 100)
+	@Test
 	public void saverRedisUuid(){
 		long begin = System.currentTimeMillis();
 		redisService.saveUuid();
@@ -46,7 +49,7 @@ public class SpringbootRedisApplicationTests extends AbstractTestNGSpringContext
 
 	@Test
 	public void getCount(){
-		System.out.println(redisService.count("zhangmingmap"));
+		Console.log(redisService.count("zhangmingmap"));
 	}
 
 	@Test
@@ -60,7 +63,7 @@ public class SpringbootRedisApplicationTests extends AbstractTestNGSpringContext
 		try {
 			if(lock.lock()) {
 				//需要加锁的代码
-				System.out.println("获取到锁，执行业务流程:"+Thread.currentThread().getId()+".time="+System.currentTimeMillis());
+				Console.log("获取到锁，执行业务流程:"+Thread.currentThread().getId()+".time="+System.currentTimeMillis());
 				Thread.sleep(200);
 			}else{
 				System.err.println("没有获取到锁："+Thread.currentThread().getId()+".time="+System.currentTimeMillis());
@@ -73,4 +76,6 @@ public class SpringbootRedisApplicationTests extends AbstractTestNGSpringContext
 			lock.unlock();
 		}
 	}
+
+
 }

@@ -202,6 +202,8 @@ public class ConvertCode {
         System.out.println(hexString2String(productNo));
         productNo = "04050103000001070302050304";
         System.out.println(hexString2String(productNo));
+        String str = "ecbe0014010101000075002a7e1f014ba81412020a0d10116568";
+        System.out.println(str.length());
     }
     //用Java语言实现对十六进制字符串异或运算http://blog.csdn.net/acrambler/article/details/45743157
 }

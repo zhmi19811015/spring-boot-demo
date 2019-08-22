@@ -27,7 +27,14 @@ public class JwtTokenUtils {
     // 选择了记住我之后的过期时间为7天
     private static final long EXPIRATION_REMEMBER = 604800L;
 
-    // 创建token
+    /**
+     * 创建token
+     * 如果是根据可变的唯一值来生成，唯一值变化时，需重新生成token
+     * @param username
+     * @param role
+     * @param isRememberMe
+     * @return
+     */
     public static String createToken(String username,String role, boolean isRememberMe) {
         long expiration = isRememberMe ? EXPIRATION_REMEMBER : EXPIRATION;
         HashMap<String, Object> map = new HashMap<>();
@@ -42,7 +49,14 @@ public class JwtTokenUtils {
                 .compact();
     }
 
-    // 从token中获取用户名
+    /**
+     * 从token中获取用户名
+     *
+     * @param token 1
+     * @return  java.lang.String
+     * @author  zhangming
+     * @date  2019/7/15 3:00 PM
+     */
     public static String getUsername(String token){
         return getTokenBody(token).getSubject();
     }
@@ -57,6 +71,14 @@ public class JwtTokenUtils {
         return getTokenBody(token).getExpiration().before(new Date());
     }
 
+    /**
+     * 获取token信息，同时也做校验处理
+     *
+     * @param token 1
+     * @return  io.jsonwebtoken.Claims
+     * @author  zhangming
+     * @date  2019/7/15 3:01 PM
+     */
     private static Claims getTokenBody(String token){
         return Jwts.parser()
                 .setSigningKey(SECRET)

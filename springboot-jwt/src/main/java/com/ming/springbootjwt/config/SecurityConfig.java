@@ -29,9 +29,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
+    // 因为UserDetailsService的实现类实在太多啦，这里设置一下我们要注入的实现类
     @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
+    /**
+     * 功能描述: 加密
+     *
+     * @param  1
+     * @return  org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+     * @author  zhangming
+     * @date  2019/7/15 3:15 PM
+     */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();

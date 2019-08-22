@@ -1,0 +1,6 @@
+@EnableAsync与@Async注解
+我们在使用多线程的时候，往往需要创建Thread类，或者实现Runnable接口，如果要使用到线程池，我们还需要创建
+Executors，在使用spring中，已经给我们做了很好的支持。只要@EnableAsync就可以使用多线程。使用@Async就可以
+定义一个线程任务。通过spring给我们提供ThreadPoolTaskExecutor就可以使用线程池
+
+

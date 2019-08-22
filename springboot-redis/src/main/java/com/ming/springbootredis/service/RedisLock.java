@@ -2,8 +2,7 @@ package com.ming.springbootredis.service;
 
 
 import com.ming.springbootredis.config.MyRedisTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -19,8 +18,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @version 1.0
  * @date 2019/5/7 2:12 PM
  */
+@Slf4j
 public class RedisLock {
-    private static Logger logger = LoggerFactory.getLogger(RedisLock.class);
 
     private MyRedisTemplate redisTemplate;
 
@@ -94,7 +93,7 @@ public class RedisLock {
                 }
             });
         } catch (Exception e) {
-            logger.error("get redis error, key : {}", key);
+            log.error("get redis error, key : {}", key);
         }
         return obj != null ? obj.toString() : null;
     }
@@ -112,7 +111,7 @@ public class RedisLock {
                 }
             });
         } catch (Exception e) {
-            logger.error("setNX redis error, key : {}", key);
+            log.error("setNX redis error, key : {}", key);
         }
         return obj != null ? (Boolean) obj : false;
     }
@@ -130,7 +129,7 @@ public class RedisLock {
                 }
             });
         } catch (Exception e) {
-            logger.error("setNX redis error, key : {}", key);
+            log.error("setNX redis error, key : {}", key);
         }
         return obj != null ? (String) obj : null;
     }
@@ -150,14 +149,15 @@ public class RedisLock {
         int timeout = timeoutMsecs;
         while (timeout >= 0) {
             long expires = System.currentTimeMillis() + expireMsecs + 1;
-            String expiresStr = String.valueOf(expires); //锁到期时间
+            //锁到期时间
+            String expiresStr = String.valueOf(expires);
             if (this.setNX(lockKey, expiresStr)) {
                 // lock acquired
                 locked = true;
                 return true;
             }
-
-            String currentValueStr = this.get(lockKey); //redis里的时间
+            //redis里的时间
+            String currentValueStr = this.get(lockKey);
             if (currentValueStr != null && Long.parseLong(currentValueStr) < System.currentTimeMillis()) {
                 //判断是否为空，不为空的情况下，如果被其他线程设置了值，则第二个条件判断是过不去的
                 // lock is expired

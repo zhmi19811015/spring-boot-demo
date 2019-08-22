@@ -82,8 +82,8 @@ public class RedisUtil{
      * @param key 键
      * @return 值
      */
-    public Object get(String key, int indexdb){
-        redisTemplate.indexdb.set(indexdb);
+    public Object get(String key){
+        //redisTemplate.indexdb.set(indexdb);
         return key==null?null:redisTemplate.opsForValue().get(key);
     }
 
@@ -93,9 +93,9 @@ public class RedisUtil{
      * @param value 值
      * @return true成功 false失败
      */
-    public boolean set(String key,Object value,int indexdb) {
+    public boolean set(String key,Object value) {
         try {
-            redisTemplate.indexdb.set(indexdb);
+            //redisTemplate.indexdb.set(indexdb);
             redisTemplate.opsForValue().set(key, value);
             return true;
         } catch (Exception e) {
@@ -529,6 +529,47 @@ public class RedisUtil{
             return 0;
         }
     }
+
+    //===============================zset=================================
+
+    public boolean zSet(String key,Object value,double sorce){
+        try{
+            redisTemplate.opsForZSet().add(key,value,sorce);
+            return  true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+   /**
+    * 功能描述: 获取变量指定区间的元素
+    *
+    * @param key key
+    * @param start 开始
+    * @param end 结束
+    * @return  java.util.Set
+    * @author  zhangming
+    * @date  2019/6/20 5:08 PM
+    */
+    public Set zRange(String key,long start,long end){
+        return redisTemplate.opsForZSet().range(key,start,end);
+
+    }
+
+    public Set zRangeByScore(String key,double min,double max){
+
+        return redisTemplate.opsForZSet().rangeByScore(key,min,max);
+    }
+
+    public long zRemoveRangeByScore(String key,double min,double max ){
+       return  redisTemplate.opsForZSet().removeRangeByScore(key,min,max);
+    }
+
+    public long zRemove(String key,Object[] objects){
+        return  redisTemplate.opsForZSet().remove(key,objects);
+    }
+
 
     public static void main(String[] args) {
 		/*JedisPool jedisPool = new JedisPool(null,"localhost",6379,100,"123456");

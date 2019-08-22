@@ -1,5 +1,6 @@
 package com.ming.springbootredis.service;
 
+import cn.hutool.core.lang.Console;
 import com.ming.springbootredis.config.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +12,13 @@ public class RedisService {
     @Autowired
     private RedisUtil redisUtil;
 
-    public boolean save(){
+    public boolean save() throws InterruptedException {
         System.out.println("start save ...");
         long begin = System.currentTimeMillis();
         for (int i = 1;i<=20*10000;i++){
-            redisUtil.hset("zhangmingmap",String.valueOf(i),"zhangming"+i);
+            boolean res= redisUtil.hset("zhangmingmap",String.valueOf(i),"zhangming"+i);
+            Console.log("====="+res);
+            Thread.sleep(1000);
         }
         long end = System.currentTimeMillis();
         System.out.println("end save:"+(end-begin));
