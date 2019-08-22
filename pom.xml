@@ -31,6 +31,7 @@
     <module>hadoop-demo</module>
     <module>kafka-consumer</module>
     <module>kafka-producer</module>
+    <module>ming-spring-boot-starter</module>
     <module>netty-demo</module>
     <module>rabbitmq-producer</module>
     <module>rabbitmq-consumer</module>
@@ -38,24 +39,25 @@
     <module>spring-es2</module>
     <module>spring-websocket</module>
     <module>springboot-admin</module>
-    <module>springboot-fastdfs</module>
-    <module>springboot-jwt</module>
-    <module>springboot-logback</module>
-    <module>springboot-redis</module>
-    <module>springboot-security</module>
-    <module>springboot-shiro</module>
-    <module>springboot-mybatis</module>
-    <module>springboot-metrics</module>
     <module>springboot-bean</module>
     <module>springboot-conditional</module>
     <module>springboot-exception</module>
+    <module>springboot-fastdfs</module>
     <module>springboot-file</module>
+    <module>springboot-jwt</module>
     <module>springboot-limiter</module>
     <module>springboot-locallock</module>
-    <module>spring-async</module>
+    <module>springboot-logback</module>
     <module>springboot-mail</module>
+    <module>springboot-metrics</module>
+    <module>springboot-mybatis</module>
+    <module>springboot-redis</module>
+    <module>springboot-security</module>
+    <module>springboot-shiro</module>
     <module>springboot-validator</module>
-    <module>ming-spring-boot-starter</module>
+    <module>zk-register-center</module>
+    <module>zk-register-starter</module>
+
   </modules>
 
   <dependencies>
