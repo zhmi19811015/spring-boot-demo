@@ -22,10 +22,10 @@ public class Test {
         Console.log(new File(fielStr).exists());
         param.put("file", FileUtil.file(fielStr));
         param.put("output","json");
-        String reuslt = HttpUtil.post("http://134.175.89.109:8081/group1/upload",param);
+        String reuslt = HttpUtil.post("http://134.175.89.119:8081/group1/upload",param);
         Console.log(reuslt);
-        //http://134.175.89.109:8081/group1/default/20191118/19/43/1/123.png
+        //http://134.175.89.119:8081/group1/default/20191118/19/43/1/123.png
 
-        //http://134.175.89.109:8081/group1/default/20191118/19/47/1/123.png
+        //http://134.175.89.119:8081/group1/default/20191118/19/47/1/123.png
     }
 }

@@ -16,7 +16,7 @@ import org.apache.zookeeper.data.Stat;
  */
 @Slf4j
 public class ZkUtil {
-    private static final String ZOOKEEER_URL = "134.175.89.109:2181";
+    private static final String ZOOKEEER_URL = "134.175.89.119:2181";
     //超时时间 毫秒
     private static final int TIME_OUT = 5000;
     private static CuratorFramework curatorFramework;

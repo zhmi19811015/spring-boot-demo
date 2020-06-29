@@ -22,7 +22,7 @@
 //public class NettyClientTest extends AbstractTestNGSpringContextTests {
 //    @org.testng.annotations.Test(invocationCount = 500, threadPoolSize = 500)
 //    public void test() {
-//        String ip = "134.175.89.109";
+//        String ip = "134.175.89.119";
 //        int port = 52018;
 //        //设置一个多线程循环器
 //        EventLoopGroup boosGroup = new NioEventLoopGroup();

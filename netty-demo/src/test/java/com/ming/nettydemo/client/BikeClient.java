@@ -17,7 +17,7 @@ import io.netty.util.concurrent.DefaultThreadFactory;
  * @date 2019/6/17 12:00 PM
  */
 public class BikeClient implements Runnable{
-//    final String IP = "134.175.89.109";
+//    final String IP = "134.175.89.119";
     final String IP = "127.0.0.1";
     private String firstMsg;
     private boolean isTimeOut;
