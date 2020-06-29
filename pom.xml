@@ -28,12 +28,16 @@
 
   <modules>
     <module>demo</module>
+    <module>dubbo-api</module>
+    <module>dubbo-client</module>
+    <module>dubbo-server</module>
     <module>hadoop-demo</module>
     <module>kafka-consumer</module>
     <module>kafka-producer</module>
     <module>ming-spring-boot-starter</module>
     <module>netty-demo</module>
     <module>rabbitmq-producer</module>
+    <module>rabbitmq-demo</module>
     <module>rabbitmq-consumer</module>
     <module>spring-es</module>
     <module>spring-es2</module>
@@ -50,13 +54,23 @@
     <module>springboot-logback</module>
     <module>springboot-mail</module>
     <module>springboot-metrics</module>
-    <module>springboot-mybatis</module>
+    <module>springboot-tkmybatis</module>
+    <module>springboot-mybatisplus</module>
+    <module>springboot-resourcesfile</module>
+    <module>spring-security-oauth2</module>
+    <module>spring-ioc</module>
+    <module>spring-async</module>
     <module>springboot-redis</module>
     <module>springboot-security</module>
     <module>springboot-shiro</module>
     <module>springboot-validator</module>
     <module>zk-register-center</module>
     <module>zk-register-starter</module>
+    <module>big-screen-service</module>
+    <module>springboot-base</module>
+    <module>springboot-netty</module>
+    <module>wpsdemo</module>
+    <module>springboot-ftp</module>
 
   </modules>
 
@@ -90,6 +104,7 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.2</version>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
@@ -110,6 +125,16 @@
       <!--<artifactId>springloaded</artifactId>-->
     <!--</dependency>-->
     <!--springboot中修改完文件后自动reload的插件 end -->
+    <dependency>
+      <groupId>com.jcraft</groupId>
+      <artifactId>jsch</artifactId>
+      <version>0.1.54</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
+      <version>3.6</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>
@@ -144,7 +169,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>1.4</version>
+        <version>2.5</version>
       </dependency>
 
 

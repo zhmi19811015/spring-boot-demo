@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 /**
  * 分布式锁可以基于很多种方式实现，比如zookeeper、redis...。不管哪种方式，
  * 他的基本原理是不变的：用一个状态值表示锁，对锁的占用和释放通过状态值来标识。
- *
+ * <p>
  * 可以用基于redis的分布式锁
  *
  * @author zhangming
@@ -54,7 +54,6 @@ public class RedisLock {
 
     /**
      * Detailed constructor with default lock expiration of 60000 msecs.
-     *
      */
     public RedisLock(MyRedisTemplate redisTemplate, String lockKey, int timeoutMsecs) {
         this(redisTemplate, lockKey);
@@ -63,7 +62,6 @@ public class RedisLock {
 
     /**
      * Detailed constructor.
-     *
      */
     public RedisLock(MyRedisTemplate redisTemplate, String lockKey, int timeoutMsecs, int expireMsecs) {
         this(redisTemplate, lockKey, timeoutMsecs);
@@ -176,10 +174,10 @@ public class RedisLock {
             }
             timeout -= DEFAULT_ACQUIRY_RESOLUTION_MILLIS;
 
-            /*
-                延迟100 毫秒,  这里使用随机时间可能会好一点,可以防止饥饿进程的出现,即,当同时到达多个进程,
-                只会有一个进程获得锁,其他的都用同样的频率进行尝试,后面有来了一些进行,也以同样的频率申请锁,这将可能导致前面来的锁得不到满足.
-                使用随机的等待时间可以一定程度上保证公平性
+            /**
+             延迟100 毫秒,  这里使用随机时间可能会好一点,可以防止饥饿进程的出现,即,当同时到达多个进程,
+             只会有一个进程获得锁,其他的都用同样的频率进行尝试,后面有来了一些进行,也以同样的频率申请锁,这将可能导致前面来的锁得不到满足.
+             使用随机的等待时间可以一定程度上保证公平性
              */
             Thread.sleep(DEFAULT_ACQUIRY_RESOLUTION_MILLIS);
 

@@ -1,9 +1,7 @@
 
 server:
-  port: 8918
-spring:
-  application:
-    name: "springboot-logback"
+  port: 8022
+
 #  profiles:
 #    active: dev
 #  boot:
@@ -42,4 +40,4 @@ ming:
 #  level:
 #    root: info
 #  path: /Users/zhangiming/temp/logs/test
-debug: true
+#debug: true

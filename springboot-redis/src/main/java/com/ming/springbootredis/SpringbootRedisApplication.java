@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class SpringbootRedisApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringbootRedisApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootRedisApplication.class, args);
+    }
 
 }

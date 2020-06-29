@@ -1,7 +1,5 @@
 package com.ming.springasync;
 
-import cn.hutool.core.lang.Console;
-import cn.hutool.core.lang.UUID;
 import com.ming.springasync.service.AsyncTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,14 +20,14 @@ public class TestRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Console.log("TestRunner:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
-        for (int i = 0; i < 10; i++) {
-            asyncTaskService.asyncTask1(); // 执行异步任务
-            Console.log("\n");
-            asyncTaskService.asyncTask2();
-            Console.log("\n");
-            asyncTaskService.test();
-            Console.log("\n");
-        }
+//        Console.log("TestRunner:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
+//        for (int i = 0; i < 10; i++) {
+//            asyncTaskService.asyncTask1(); // 执行异步任务
+//            Console.log("\n");
+//            asyncTaskService.asyncTask2();
+//            Console.log("\n");
+//            asyncTaskService.test();
+//            Console.log("\n");
+//        }
     }
 }

@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.ming.mingspringbootstarter.service.MingAutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.ming.mingspringbootstarter.service.MingAutoConfigure,com.ming.mingspringbootstarter.demo1.HttpAutoConfiguration

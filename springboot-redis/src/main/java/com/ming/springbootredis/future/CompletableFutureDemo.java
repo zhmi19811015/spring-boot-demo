@@ -9,19 +9,19 @@ import java.util.concurrent.Future;
  * 调用get方法时，处在阻塞状态，等待线程返回结果
  */
 public class CompletableFutureDemo {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         System.out.println("begin");
-        Future<Double> futurePrice =getPriceAsync("ss");
+        Future<Double> futurePrice = getPriceAsync("ss");
         System.out.println("doSomething");
         System.out.println(futurePrice.get());
         System.out.println("end");
     }
 
-    public static Future<Double> getPriceAsync(String product){
+    public static Future<Double> getPriceAsync(String product) {
         //创建CompletableFuture对象
         CompletableFuture<Double> futurePrice = new CompletableFuture<>();
 
-        new Thread (()->{
+        new Thread(() -> {
             try {
                 //在另一个线程中执行计算
                 double price = getPrice(product);

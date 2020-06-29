@@ -3,9 +3,11 @@ package com.ming.springasync.service;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.UUID;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
+import java.util.concurrent.Future;
 
 /**
  * 类作用描述
@@ -25,7 +27,7 @@ public class AsyncTaskService {
      */
     @Async
     public void asyncTask1(){
-        Console.log("asyncTask1:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
+        Console.log("methodName:asyncTask1---线程名称:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
         try {
             Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
@@ -33,9 +35,23 @@ public class AsyncTaskService {
         }
     }
 
+    public Integer test01(){
+        return 3;
+    }
+
+    /**
+     * 异步方法等待
+     * @return
+     */
+    @Async
+    public Future test01AsyncWithFuture(){
+        return AsyncResult.forValue(this.test01());
+
+    }
+
     @Async
     public void asyncTask2(){
-        Console.log("asyncTask2:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
+        Console.log("methodName:asyncTask2---线程名称:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
         try {
             Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
@@ -44,7 +60,7 @@ public class AsyncTaskService {
     }
 
     public void test(){
-        Console.log("test:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
+        Console.log("methodName:test---线程名称:"+Thread.currentThread().getName()+"  "+ UUID.randomUUID().toString());
         try {
             Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {

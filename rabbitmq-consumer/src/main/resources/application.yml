@@ -2,7 +2,7 @@ server:
   port: 8121
 spring:
   rabbitmq:
-    host: 10.211.55.101
+    host: 134.175.89.109
     port: 5672
     username: zhangming
     password: zhangming1015

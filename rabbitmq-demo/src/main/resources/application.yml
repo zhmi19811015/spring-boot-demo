@@ -1,0 +1,28 @@
+server:
+  port: 8111
+
+spring:
+  rabbitmq:
+    host: 192.168.10.201
+    port: 5672
+    username: guest
+    password: guest
+    # 开启发送确认
+    publisher-confirms: true
+    # 开启发送失败退回
+    publisher-returns: true
+    ex-change-name: xhkzpt-exchange
+    # 开启ACK
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+         #重试次数超过上面的设置之后是否丢弃（false不丢弃时需要写相应代码将该消息加入死信队列）
+        default-requeue-rejected: true
+        #最大重试次数
+        retry:
+          max-attempts: 5
+          #重试间隔时间（单位毫秒）
+          initial-interval: 5000ms
+

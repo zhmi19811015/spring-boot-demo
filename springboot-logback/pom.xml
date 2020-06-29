@@ -53,11 +53,11 @@
 		</dependency>
 
 		<!--自定义的starer-->
-		<dependency>
-			<groupId>com.ming</groupId>
-			<artifactId>ming-spring-boot-starter</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.ming</groupId>-->
+<!--			<artifactId>ming-spring-boot-starter</artifactId>-->
+<!--			<version>0.0.1-SNAPSHOT</version>-->
+<!--		</dependency>-->
 
 
 		<!--war 部署 -->

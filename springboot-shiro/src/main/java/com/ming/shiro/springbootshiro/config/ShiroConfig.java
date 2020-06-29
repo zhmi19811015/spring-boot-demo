@@ -1,7 +1,8 @@
 package com.ming.shiro.springbootshiro.config;
 
 import com.ming.shiro.springbootshiro.shiro.MyShiroRealm;
-import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,10 +27,18 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    /**
+     * 配置url过滤器
+     * @return
+     */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroBean = new ShiroFilterFactoryBean();
-        shiroBean.setSecurityManager(securityManager);
-        return shiroBean;
+    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+        DefaultShiroFilterChainDefinition definition = new DefaultShiroFilterChainDefinition();
+        definition.addPathDefinition("/doLogin", "anon");
+        definition.addPathDefinition("/**", "authc");
+        return definition;
+//        ShiroFilterFactoryBean shiroBean = new ShiroFilterFactoryBean();
+//        shiroBean.setSecurityManager(securityManager);
+//        return shiroBean;
     }
 }

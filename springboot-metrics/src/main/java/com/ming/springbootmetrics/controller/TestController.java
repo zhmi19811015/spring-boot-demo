@@ -19,9 +19,9 @@ public class TestController {
     private static final Counter EXCEPTION_COUNTER = Metrics.counter("test.total");
 
     @GetMapping("/test1")
-    public String test1(String name){
+    public String test1(String name) {
         EXCEPTION_COUNTER.increment();
-        System.out.println("++++++"+EXCEPTION_COUNTER.count());
+        System.out.println("++++++" + EXCEPTION_COUNTER.count());
         return name;
     }
 }

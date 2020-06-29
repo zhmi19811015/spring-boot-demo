@@ -32,7 +32,12 @@ public class UploadController {
         return "upload";
     }
 
-    @PostMapping("/upload") //new annotation since 4.3
+    @PostMapping("upload")
+    public String upload(@RequestParam("file") MultipartFile file) throws Exception{
+        return saveFile(file);
+    }
+
+    @PostMapping("/singleFileUpload") //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
         if (file.isEmpty()) {
@@ -41,13 +46,13 @@ public class UploadController {
         }
         try {
             // Get the file and save it somewhere
-            String path=saveFile(file);
+            String path = saveFile(file);
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
             redirectAttributes.addFlashAttribute("path",
                     "file path url '" + path + "'");
         } catch (Exception e) {
-            logger.error("upload file failed",e);
+            logger.error("upload file failed", e);
         }
         return "redirect:/uploadStatus";
     }
@@ -68,12 +73,12 @@ public class UploadController {
      * @throws IOException
      */
     private String saveFile(MultipartFile multipartFile) throws IOException {
-        String[] fileAbsolutePath={};
-        String fileName=multipartFile.getOriginalFilename();
+        String[] fileAbsolutePath = {};
+        String fileName = multipartFile.getOriginalFilename();
         String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
         byte[] file_buff = null;
-        InputStream inputStream=multipartFile.getInputStream();
-        if(inputStream!=null){
+        InputStream inputStream = multipartFile.getInputStream();
+        if (inputStream != null) {
             int len1 = inputStream.available();
             file_buff = new byte[len1];
             inputStream.read(file_buff);
@@ -81,14 +86,15 @@ public class UploadController {
         inputStream.close();
         FastDFSFile file = new FastDFSFile(fileName, file_buff, ext);
         try {
-            fileAbsolutePath = FastDFSClient.upload(file);  //upload to fastdfs
+            //upload to fastdfs
+            fileAbsolutePath = FastDFSClient.upload(file);
         } catch (Exception e) {
-            logger.error("upload file Exception!",e);
+            logger.error("upload file Exception!", e);
         }
-        if (fileAbsolutePath==null) {
+        if (fileAbsolutePath == null) {
             logger.error("upload file failed,please upload again!");
         }
-        String path=FastDFSClient.getTrackerUrl()+fileAbsolutePath[0]+ "/"+fileAbsolutePath[1];
+        String path = FastDFSClient.getTrackerUrl() + fileAbsolutePath[0] + "/" + fileAbsolutePath[1];
         return path;
     }
 }

@@ -6,10 +6,10 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://134.175.89.109:3306/jwtest?useSSL=false
+    url: jdbc:mysql://134.175.89.109:13306/jwtest?useSSL=false
     username: root
-    password: zhangming1015
+    password: ZHmi1015
     driver-class-name: com.mysql.jdbc.Driver
 logging:
   level:
-    root: debug
+    root: info

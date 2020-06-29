@@ -1,6 +1,5 @@
 package com.ming.springbootredis.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -13,7 +12,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
  * @version 1.0
  * @date 2019/7/16 2:06 PM
  */
-@Configurable
+//@Configurable
 public class RedisConnConfig {
 
     /**

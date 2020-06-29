@@ -1,5 +1,6 @@
 package com.ming.springbootjwt.controller;
 
+import cn.hutool.core.lang.Console;
 import com.ming.springbootjwt.entity.User;
 import com.ming.springbootjwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(User user){
+        Console.log(user);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
         User save = userRepository.save(user);

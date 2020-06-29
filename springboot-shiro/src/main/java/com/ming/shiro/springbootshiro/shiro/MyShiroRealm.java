@@ -2,9 +2,7 @@ package com.ming.shiro.springbootshiro.shiro;
 
 import com.ming.shiro.springbootshiro.service.ShiroService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -37,6 +35,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         String username = token.getPrincipal().toString();
 
         String password = shiroService.getPasswordByUsername(username);
+        if (password == null){
+            throw new UnknownAccountException(); // 账号不存在
+            //throw new LockedAccountException();  // 账号被锁定
+        }
         if (password != null) {
             String realmName = getName();
             return new SimpleAuthenticationInfo(username, password, realmName);

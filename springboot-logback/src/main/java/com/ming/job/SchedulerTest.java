@@ -23,6 +23,11 @@ public class SchedulerTest {
     @Scheduled(fixedRate = 2000)
     public void testTasks1() {
         log.info("定时任务执行时间11："+Thread.currentThread().getName()+"==" + dateFormat.format(new Date()));
+//        try{
+//            int a = 6/0;
+//        }catch (Exception e){
+//            log.error("错误",e);
+//        }
     }
 
     //每天3：05执行

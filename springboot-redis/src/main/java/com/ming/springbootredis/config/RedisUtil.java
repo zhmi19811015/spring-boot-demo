@@ -1,14 +1,18 @@
 package com.ming.springbootredis.config;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 一般情况下，Spring容器在启动时会创建所有的Bean对象，使用@Lazy注解可以将Bean对象的创建延迟到第一次使用Bean的时候
+ */
 @Lazy
 @Component
 public class RedisUtil{
@@ -443,6 +447,16 @@ public class RedisUtil{
         }
     }
 
+    public boolean lLeftSet(String key, Object value) {
+        try {
+            redisTemplate.opsForList().leftPush(key, value);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     /**
      * 将list放入缓存
      * @param key 键
@@ -527,6 +541,16 @@ public class RedisUtil{
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    public Object lRightPop(String key){
+        try {
+            Object obj = redisTemplate.opsForList().rightPop(key);
+            return obj;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
